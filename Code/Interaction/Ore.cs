@@ -4,9 +4,9 @@ using Sandbox;
 
 public sealed class Ore : Component, Component.IDamageable
 {
-	[Property] Prop OreProp {get; set;}
-	[Property] GameObject OreDrop {get; set;}
-	[Property] SoundEvent OreBreakSound {get; set;}
+	[Property] Prop OreProp { get; set; }
+	[Property] GameObject OreDrop { get; set; }
+	[Property] SoundEvent OreBreakSound { get; set; }
 
 	float _maxPropHealth = 0f;
 
@@ -18,19 +18,19 @@ public sealed class Ore : Component, Component.IDamageable
 	public void OnDamage( in DamageInfo damageInfo )
 	{
 		OreProp.Health -= damageInfo.Damage;
-		if (OreProp.Health < 0)
+		if ( OreProp.Health < 0 )
 		{
 			SpawnDrops();
 			SpawnDrops();
 			SpawnDrops();
 			SpawnDrops();
 			SpawnDrops();
-			Sound.Play(OreBreakSound, WorldPosition);
+			Sound.Play( OreBreakSound, WorldPosition );
 			GameObject.Destroy();
 		}
 	}
 
-	public void UpdatePropHealth(DamageInfo damageInfo)
+	public void UpdatePropHealth( DamageInfo damageInfo )
 	{
 		OreProp.Health -= damageInfo.Damage;
 	}
@@ -40,6 +40,6 @@ public sealed class Ore : Component, Component.IDamageable
 		OreDrop.Clone();
 		OreDrop.WorldPosition = LocalPosition;
 		OreDrop.WorldRotation = Rotation.Random;
-		OreDrop.GetComponentInChildren<Rigidbody>().ApplyImpulse(WorldTransform.Forward.RotateAround(Vector3.Up, Rotation.Random) * 10f);
+		OreDrop.GetComponentInChildren<Rigidbody>().ApplyImpulse( WorldTransform.Forward.RotateAround( Vector3.Up, Rotation.Random ) * 10f );
 	}
 }

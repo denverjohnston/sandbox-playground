@@ -23,8 +23,7 @@
     "PerMapRanking": false,
     "LeaderboardType": "None",
     "CsProjName": "",
-    "StartupScene": "scenes/multiplayer-lobby.scene",
-    "LaunchMode": "Normal",
-    "DedicatedServerStartupScene": "scenes/multiplayer-lobby.scene"
+    "StartupScene": "scenes/spleef_start.scene",
+    "LaunchMode": "Normal"
   }
 }

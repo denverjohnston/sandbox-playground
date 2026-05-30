@@ -1,0 +1,32 @@
+)@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+@namespace Sandbox
+
+<root>
+	<div class="countdown">@TimeInSeconds</div>
+</root>
+
+@code
+{
+	[Property] SpleefManager Manager { get; set; }
+	private TimeUntil GameStartTime => Manager.StartTime;
+	private string TimeInSeconds => $"Game starts in {(int)GameStartTime} seconds";
+
+	/// <summary>
+	/// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
+	/// </summary>
+	protected override int BuildHash()
+	{
+		return System.HashCode.Combine(TimeInSeconds);
+	}
+
+	protected override void OnUpdate()
+	{
+		if (GameStartTime <= 0)
+		{
+			Enabled = false;
+			return;
+		}
+	}
+}
